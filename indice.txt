@@ -1,0 +1,61 @@
+INSTALADO EN ESTE PROYECTO
+
+-
+
+- idioma a español
+composer require laraveles/spanish
+php artisan laraveles:install-lang
+
+modificando el parámetro locale de la configuración de Laravel en config/app.php:
+// Ej: español
+'locale' => 'es',
+
+-trix : descargar CDN y aplicar (esto es para los input text que de formato al texto)
+https://cdnjs.com/libraries/trix
+
+- intervention image
+composer require intervention/image
+
+- moment JS
+npm install moment --save 
+actualizar archivo de resources/js/bootstrap.js
+
+- sweet alert
+npm install -S vue-sweetalert2
+configurar en resources/js/app.js
+
+
+- crear policy dependiente de un modelo
+php artisan make:policy PerfilPolicy -m Perfil
+* para este caso se modifica el metodo update en el policy,
+verificando que el usuario autenticado puede actualizar el Perfil
+    return $user->id === $perfil->user_id;
+* dentro del metodo del controller se ejecuta la autorizacion, se le pasa el metodo a
+    autorizar y el objeto que revisará
+    $this->authorize('update',$perfil;)
+
+- los eventos se aplican en el modelo
+
+- proteger de autenticacion desde el constructor del controller haciendo una excepcion
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'show']);
+    }
+
+- los efectos se hacen en VUE y con el codigo elegido para esto. por ejemplo el corazon 
+    que explota cuando le dan click. Fuente: https://codepen.io/AlHakem/pen/yZGWxJ
+
+- para ejecutar las migraciones nuevas es con el comando
+php artisan migrate --path=/database/migrations
+
+- 
+
+NOTA: en esta practica crean controlador por separado para la página y presentacion principal, 
+y para manejar los likes
+
+- en la documentacion de laravel 7, estan la seccion Database: Query Builder, con los comandos
+prea realizar consultas mas comunes usandolos como metodos.
+
+- instalar OWL carousel
+npm i owl.carousel
+ buscar su hoja de stilos, el cdn 
